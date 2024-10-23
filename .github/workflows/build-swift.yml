@@ -47,7 +47,7 @@ jobs:
 
     - name: Build EeveeSpotify (debug)
       run: |
-        make package
+        make package THEOS_ARCH="armv7" TARGET=iPhone:9.0:armv7
         echo "filename=$(find . -name '*debug*' -path './packages/*' | cut -d/ -f3)" >> $GITHUB_ENV
     - uses: actions/upload-artifact@v4
       with:
@@ -57,7 +57,7 @@ jobs:
 
     - name: Build EeveeSpotify (rootful)
       run: |
-        make package FINALPACKAGE=1
+        make package FINALPACKAGE=1 THEOS_ARCH="armv7" TARGET=iPhone:9.0:armv7
         echo "filename=$(find . -not -name '*debug*' -path './packages/*' | cut -d/ -f3)" >> $GITHUB_ENV
     - uses: actions/upload-artifact@v4
       with:
@@ -67,7 +67,7 @@ jobs:
 
     - name: Build EeveeSpotify (rootless)
       run: |
-        make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+        make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless THEOS_ARCH="armv7" TARGET=iPhone:9.0:armv7
         echo "filename=$(find . -name '*arm64*' -path './packages/*' | cut -d/ -f3)" >> $GITHUB_ENV
     - uses: actions/upload-artifact@v4
       with:
